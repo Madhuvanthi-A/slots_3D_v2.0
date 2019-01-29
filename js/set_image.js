@@ -2,15 +2,24 @@
 
    AFRAME.registerComponent('foo', {
   init: function () {
-    var play = document.querySelector('#go_button');
-    play.addEventListener('click', () => { 
-      var menu = document.querySelector('#home_page');
-      var logo = document.querySelector('#splash');
-      logo.setAttribute('visible', false);
-      menu.setAttribute('visible', true);
-      })
+    var go = document.querySelector('#go_button');//initializing go button entity
+    var menu = document.querySelector('#home_page');//initializing home page entity
+    
+    //go button click event
+    go.addEventListener('click', () => { 
+
+      //go.setAttribute('visible', false);//toggle visibility
+      menu.setAttribute('visible', true);//toggle visibility
+      });
   }
 });
+
+   AFRAME.registerComponent('wireframe', {
+      dependencies: ['material'],
+      init: function () {
+        this.el.components.material.material.wireframe = true;
+      }
+    });
   
   /* AFRAME.registerComponent('a-scene', {
 

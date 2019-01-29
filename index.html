@@ -12,71 +12,73 @@
     <script src="js/set_image.js"></script>
 </head>
 <body>
+  <!--2D plane>
+  <div class="container-fluid modal">
+    <div class="row">
+      <div class="col">
+        <img id="vol" src="assets/icons/vol.png">
+        <img id="menu" class="float-right" src="assets/icons/menu.png">
+        <img id="locn" src="assets/icons/locn.png">
+        <img id="help" src="assets/icons/help.svg">
+        <img src="assets/img/background.jpg" width="100%" height="auto">
+        <img id="go_button" class="menu_button" width="10%" height="auto" src="assets/icons/go.jpg">
+        <img id="locn" src="assets/icons/locn.png">
+        <button class="btn-primary" href="">Click</button>
+      </div>
+    </div>
+  </div-->
+
+
 	<a-scene>
 		<a-assets>
-			<!--Images-->
-		  <img id="logo" src="assets/logo/logo.gif"/>
-			<img id="pano" src="assets/pano/pano.JPG"/>
-      <img id="go" src="assets/icons/go.jpg"/>
+		    <!--Images-->
+		    <img id="logo" src="assets/logo/logo.gif"/>
+			  <img id="pano" src="assets/pano/pano.JPG"/>
+        <!--Home screen icons-->
+        <img id="vol" src="assets/icons/vol.png">
+        <img id="menu" src="assets/icons/menu.png">
+        <img id="locn" src="assets/icons/locn.png">
+        <img id="help" src="assets/icons/help.svg">
 
-      <!--Home screen icons-->
-      <img id="vol" src="assets/icons/vol.png">
-      <img id="menu" src="assets/icons/menu.png">
-      <img id="locn" src="assets/icons/locn.png">
-      <img id="help" src="assets/icons/help.svg">
-
-			<!--Script-->
-			<script id="plane" type="text/html">
-				<a-entity class="link" geometry="primitive: circle; radius: 1" material="side: double; src: ${thumb}"></a-entity>
-			</script>
+			  <!--Script-->
+			  <script id="plane" type="text/html">
+				  <a-entity class="link" geometry="primitive: circle; radius: 1" material="side: double; src: ${thumb}"></a-entity>
+			  </script>
 		</a-assets>
 
     <!--Splash screen-->
-      <a-entity id="splash" visible="true">
-        <a-entity layout="type: line; margin: 1.5" scale="4 4 4" position="0 0 -8" width="2.5">
-            <a-entity id="logo" template="src: #plane" data-src="#logo" data-thumb="#logo">
-              <a-animation attribute="visible" dur="5000" to="false" begin="click"></a-animation>
-            </a-entity>
-        </a-entity>
-        <a-entity  foo layout="type: line; margin: 1.5" scale="1 1 1" position="0 -5 -8" width="1">
-            <a-entity id="go_button" template="src: #plane" data-src="#go" data-thumb="#go">
-            </a-entity>
+    <a-entity id="splash" visible="true">
+      <a-entity  foo layout="type: line; margin: 1.5" scale="4 4 4" position="0 0 -8" width="1">
+        <a-entity id="go_button" template="src: #plane" data-src="#logo" data-thumb="#logo" begin="click">
+          <a-animation attribute="position" scale="1 1 1" to="-15 6 -8" begin="click"></a-animation>
         </a-entity>
       </a-entity>
+    </a-entity>
 
-      <!--Home screen-->
-      <a-entity id="home_page" visible="false">
+    <!--Home screen-->
+    <a-entity id="home_page" visible="false">
       <a-entity layout="type: line;"" scale="1 1 1" position="0 0 -8">
-          <!--360-degree image.-->
-           <a-sky id="image-360" src="#pano" rotation="0 130 0"></a-sky>
+        <!--360-degree image.-->
+        <a-sky id="image-360" src="#pano" rotation="0 130 0"></a-sky>
       </a-entity>
-      <!--Home screen buttons-->
-      <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="-10 5 -8" width="2.5">
-          <a-entity id="vol_button" template="src: #plane" data-src="#logo" data-thumb="#logo"></a-entity>
-      </a-entity>
-
-      <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="5 5 -8" width="2.5">
+      <!--Home screen icons-->
+      <a-entity layout="type: line; margin: 1.5" scale="0.4 0.4 0.4" position="10 5 -8" width="2.5">
           <a-entity id="vol_button" template="src: #plane" data-src="#vol" data-thumb="#vol"></a-entity>
       </a-entity>
-
-      <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="10 5 -8" width="2.5">
-          <a-entity id="menu_button" template="src: #plane" data-src="#menu" data-thumb="#menu"></a-entity>
+      <a-entity layout="type: line; margin: 1.5" scale="0.4 0.4 0.4" position="12 5 -8" width="2.5">
+        <a-entity id="menu_button" template="src: #plane" data-src="#menu" data-thumb="#menu"></a-entity>
       </a-entity>
-
-      <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="10 -5 -8" width="2.5">
-          <a-entity id="help_button" template="src: #plane" data-src="#help" data-thumb="#help"></a-entity>
+      <a-entity layout="type: line; margin: 1.5" scale="0.4 0.4 0.4" position="10 -5.7 -8" width="2.5">
+        <a-entity id="help_button" template="src: #plane" data-src="#help" data-thumb="#help"></a-entity>
       </a-entity>
-
-      <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="-10 -5 -8" width="2.5">
-          <a-entity id="locn_button" template="src: #plane" data-src="#locn" data-thumb="#locn"></a-entity>
+      <a-entity layout="type: line; margin: 1.5" scale="0.4 0.4 0.4" position="-12 -5.7 -8" width="2.5">
+        <a-entity id="locn_button" template="src: #plane" data-src="#locn" data-thumb="#locn"></a-entity>
       </a-entity>
-      </a-entity>
+      <!--a-entity geometry="primitive: box; width: 100; height: 100; depth: 100" position="0 0 0" material="color: blue" wireframe></a-entity-->
+    </a-entity>
 
-  		<!--Camera plus Cursor-->
-  		<a-camera id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-camera>
-
-      <!--Create a plane>
-      <a-entity solarsystem scale="2 1 1" position="0 -0.1 -1"></a-entity-->
+  	<!--Camera plus Cursor-->
+  	<a-camera id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-camera>
 
 	</a-scene>
 </body>
