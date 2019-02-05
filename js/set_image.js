@@ -24,14 +24,23 @@
     AFRAME.registerComponent('homescreen', {
         //dependencies: ['material'],
         init: function () {
-          var backgroundLayout = document.querySelector('#bg_layout');
-          var aboutContent = document.querySelector('#about_content')
           var removeButton = document.querySelector('#remove_button');
 
-        removeButton.addEventListener('click', () => {
-          backgroundLayout.setAttribute('visible', false);
-          aboutContent.setAttribute('visible', false);
-          console.log('removeButton');
-        });
+          removeButton.addEventListener('click', () => {
+            var contentLayout = document.querySelector('#content_layout');
+            contentLayout.parentNode.removeChild(contentLayout);
+            return false;
+          });
+        },
+
+        update: function(){
+          var menuButton = document.querySelector('#menu_button');
+          var menuPage = document.querySelector('#menu_page');
+
+          menuButton.addEventListener('click', ()=>{
+            menuPage.setAttribute('visible', true);
+            console.log("menupage");
+          });
+
         }
     });    
