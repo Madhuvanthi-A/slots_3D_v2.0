@@ -35,11 +35,18 @@
 
         update: function(){
           var menuButton = document.querySelector('#menu_button');
-          var menuPage = document.querySelector('#menu_page');
+          //var menuPage = document.querySelector('#menu_page');
 
           menuButton.addEventListener('click', ()=>{
-            menuPage.setAttribute('visible', true);
-            console.log("menupage");
+            var menuPage = document.getElementById('menu_page');
+            //menuPage.setAttribute('visible', true);
+            if (menuPage.style.display == "none") {
+              menuPage.style.display = "block";
+              console.log("menuif");
+            } else{
+              menuPage.style.display = "none";
+              console.log("menuelse");
+            }
           });
 
         }
