@@ -59,16 +59,17 @@ AFRAME.registerComponent('pano_nav', {
         //dependencies: ['material'],
         init: function () {
           var removeButton = document.querySelector('#remove_button');
+            var menuContent = document.querySelectorAll('.menucontent');
 
           removeButton.addEventListener('click', () => {
             var contentLayout = document.querySelector('#content_layout').getAttribute('visible');
-            var menuContent = document.querySelectorAll('.menucontent');
 
             menuContent.forEach(function (node){
-            document.querySelector('.menucontent').setAttribute('visible', false);
+              node.setAttribute('visible', false);
+            //document.querySelector('.menucontent').setAttribute('visible', false);
             document.querySelector('#content_layout').setAttribute('visible', false);
-            console.log(menuContent,"contentLayout");
-            console.log(node,"node");
+            //console.log(menuContent,"contentLayout");
+            //console.log(node,"node");
             });
             
             return false;
@@ -78,9 +79,12 @@ AFRAME.registerComponent('pano_nav', {
         update: function(){
           var sceneE1 = document.querySelector('a-scene');
           var menuButton = document.querySelector('#menu_button');
+          var helpButton = document.querySelector('#help_button');
           var janastuButton = document.querySelector('#janastu_button');
           var projectsButton = document.querySelector('#projects_button');
+          var contactButton = document.querySelector('#contact_button');
           var locnButton = document.querySelector('#locn_button');
+          var content = document.querySelectorAll('.menucontent');
           //var contentBg = document.getElementById('contentbg');
           
           //Menu Button click event
@@ -97,37 +101,108 @@ AFRAME.registerComponent('pano_nav', {
 
           //Janastu Button click event
           janastuButton.addEventListener('click', ()=>{
-             //console.log(contentBg,"contentBg");
-             var janastuContent = document.querySelectorAll('.menucontent');
-             //console.log(janastuContent);
              document.getElementById('menu_page').setAttribute('visible', false);
              document.getElementById('content_layout').setAttribute('visible', true);
-             //document.querySelector('.menucontent').setAttribute('visible', true);
-             //janastuContent.setAttribute('visible', true);
-             //document.getElementById('janastu_content').setAttribute('visible', true);
-             janastuContent.forEach(function(node){
-              var janastu = document.getElementById('janastu_content').getAttribute('visible');
-              document.querySelector('#janastu_content').setAttribute('visible', true);
-               console.log(janastu);
-             })
+             content.forEach(function(node){
+              content[1].setAttribute('visible', true);
+             });
           });
 
           //Projects Button click event
           projectsButton.addEventListener('click', ()=>{
             document.getElementById('menu_page').setAttribute('visible', false);
             console.log("projectsButton");
-
-            var entityel = document.createElement('a-entity');
-            var plane = document.createElement('a-plane');
-            sceneE1.appendChild(entityel);
-            entityel.appendChild(plane);
-            entityel.setAttribute('position',{x:-4.665, y:1.708, z:-4.053});
-            entityel.setAttribute('scale',{x:0.189, y:0.177, z:1.000});
-            plane.setAttribute('geometry', {'height':2.720,
-                                               'width':9.950,});
-            plane.setAttribute('text',{'value': 'Serious games','color':'black','align': 'center','width': 8});
+            //var projects = document.createElement('a-entity');
+            //sceneE1.appendChild(projects);
+            //Technology text entity
+            var techno = document.createElement('a-entity');
+            sceneE1.appendChild(techno);
+            //projects.appendChild(techno);
+            techno.setAttribute('position',{x:-4.361, y:2.138, z:-4.053});
+            techno.setAttribute('text',{'value':'Technology','color':'red','align':'center','width':15});
+            //Research text entity
+            var research = document.createElement('a-entity');
+            sceneE1.appendChild(research);
+            research.setAttribute('position',{x:3.309, y:2.138, z:-4.053});
+            research.setAttribute('text',{'value':'Research','color':'red','align':'center','width':15});
+            //Serious game
+            var entity1 = document.createElement('a-entity');
+            var plane1 = document.createElement('a-plane');
+            sceneE1.appendChild(entity1);
+            entity1.appendChild(plane1);
+            entity1.setAttribute('position',{x:-4.361, y:1.183, z:-4.053});
+            entity1.setAttribute('scale',{x:0.5, y:0.5, z:0.5});
+            plane1.setAttribute('geometry', {'height':2,
+                                               'width':5.5,});
+            plane1.setAttribute('text',{'value': 'Serious games','color':'black','align': 'center','width': 15});
+            //Visual storytelling
+            var entity2 = document.createElement('a-entity');
+            var plane2 = document.createElement('a-plane');
+            sceneE1.appendChild(entity2);
+            entity2.appendChild(plane2);
+            entity2.setAttribute('position',{x:-19.005, y:-1.996, z:-17.652});
+            entity2.setAttribute('scale',{x:2, y:2, z:2});
+            plane2.setAttribute('geometry', {'height':2,
+                                               'width':6,});
+            plane2.setAttribute('text',{'value': 'Visual storytelling','color':'black','align': 'center','width': 15});
+            //WiFi Mesh
+            var entity2 = document.createElement('a-entity');
+            var plane2 = document.createElement('a-plane');
+            sceneE1.appendChild(entity2);
+            entity2.appendChild(plane2);
+            entity2.setAttribute('position',{x:-19.012, y:-9.063, z:-17.652});
+            entity2.setAttribute('scale',{x:2, y:2, z:2});
+            plane2.setAttribute('geometry', {'height':2,
+                                               'width':6,});
+            plane2.setAttribute('text',{'value': 'WiFi Mesh','color':'black','align': 'center','width': 15});
+           //Alipi
+            var entity2 = document.createElement('a-entity');
+            var plane2 = document.createElement('a-plane');
+            sceneE1.appendChild(entity2);
+            entity2.appendChild(plane2);
+            entity2.setAttribute('position',{x:14.591, y:4.646, z:-17.652});
+            entity2.setAttribute('scale',{x:2, y:2, z:2});
+            plane2.setAttribute('geometry', {'height':2,
+                                               'width':6,});
+            plane2.setAttribute('text',{'value': 'Alipi','color':'black','align': 'center','width': 15});
+             //Augment real space
+            var entity2 = document.createElement('a-entity');
+            var plane2 = document.createElement('a-plane');
+            sceneE1.appendChild(entity2);
+            entity2.appendChild(plane2);
+            entity2.setAttribute('position',{x:14.591, y:-1.972, z:-17.652});
+            entity2.setAttribute('scale',{x:2, y:2, z:2});
+            plane2.setAttribute('geometry', {'height':2,
+                                               'width':6,});
+            plane2.setAttribute('text',{'value': 'Augment real space','color':'black','align': 'center','width': 15});
+            //Semantic web
+            var entity2 = document.createElement('a-entity');
+            var plane2 = document.createElement('a-plane');
+            sceneE1.appendChild(entity2);
+            entity2.appendChild(plane2);
+            entity2.setAttribute('position',{x:14.591, y:-9.063, z:-17.652});
+            entity2.setAttribute('scale',{x:2, y:2, z:2});
+            plane2.setAttribute('geometry', {'height':2,
+                                               'width':6,});
+            plane2.setAttribute('text',{'value': 'Semantic web','color':'black','align': 'center','width': 15});
           });
+        
+        //Contact Button click event
+        contactButton.addEventListener('click',()=>{
+           document.getElementById('menu_page').setAttribute('visible', false);
+             document.getElementById('content_layout').setAttribute('visible', true);
+           content.forEach(function(node){
+              content[2].setAttribute('visible', true);
+             });
+        }) 
 
+          //Help Button
+          helpButton.addEventListener('click',()=>{
+            document.getElementById('content_layout').setAttribute('visible', true);
+             content.forEach(function(node){
+              content[3].setAttribute('visible', true);
+             });
+          })
           //Map function
           /*locnButton.addEventListener('click', ()=>{
             function initMap(){
