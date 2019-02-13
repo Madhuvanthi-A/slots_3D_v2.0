@@ -78,6 +78,7 @@ AFRAME.registerComponent('pano_nav', {
 
         update: function(){
           var sceneE1 = document.querySelector('a-scene');
+          var homeContent = document.querySelector('#homecontent')
           var menuButton = document.querySelector('#menu_button');
           var helpButton = document.querySelector('#help_button');
           var janastuButton = document.querySelector('#janastu_button');
@@ -117,18 +118,21 @@ AFRAME.registerComponent('pano_nav', {
             //Technology text entity
             var techno = document.createElement('a-entity');
             sceneE1.appendChild(techno);
+            homeContent.appendChild(techno);
             //projects.appendChild(techno);
             techno.setAttribute('position',{x:-4.361, y:2.138, z:-4.053});
             techno.setAttribute('text',{'value':'Technology','color':'red','align':'center','width':15});
             //Research text entity
             var research = document.createElement('a-entity');
             sceneE1.appendChild(research);
+            homeContent.appendChild(research);
             research.setAttribute('position',{x:3.309, y:2.138, z:-4.053});
             research.setAttribute('text',{'value':'Research','color':'red','align':'center','width':15});
             //Serious game
             var entity1 = document.createElement('a-entity');
             var plane1 = document.createElement('a-plane');
             sceneE1.appendChild(entity1);
+            homeContent.appendChild(entity1);
             entity1.appendChild(plane1);
             entity1.setAttribute('position',{x:-4.361, y:1.183, z:-4.053});
             entity1.setAttribute('scale',{x:0.5, y:0.5, z:0.5});
@@ -139,6 +143,7 @@ AFRAME.registerComponent('pano_nav', {
             var entity2 = document.createElement('a-entity');
             var plane2 = document.createElement('a-plane');
             sceneE1.appendChild(entity2);
+            homeContent.appendChild(entity2);
             entity2.appendChild(plane2);
             entity2.setAttribute('position',{x:-19.005, y:-1.996, z:-17.652});
             entity2.setAttribute('scale',{x:2, y:2, z:2});
@@ -146,45 +151,49 @@ AFRAME.registerComponent('pano_nav', {
                                                'width':6,});
             plane2.setAttribute('text',{'value': 'Visual storytelling','color':'black','align': 'center','width': 15});
             //WiFi Mesh
-            var entity2 = document.createElement('a-entity');
-            var plane2 = document.createElement('a-plane');
-            sceneE1.appendChild(entity2);
-            entity2.appendChild(plane2);
-            entity2.setAttribute('position',{x:-19.012, y:-9.063, z:-17.652});
-            entity2.setAttribute('scale',{x:2, y:2, z:2});
-            plane2.setAttribute('geometry', {'height':2,
+            var entity3 = document.createElement('a-entity');
+            var plane3 = document.createElement('a-plane');
+            sceneE1.appendChild(entity3);
+            homeContent.appendChild(entity3);
+            entity3.appendChild(plane3);
+            entity3.setAttribute('position',{x:-19.012, y:-9.063, z:-17.652});
+            entity3.setAttribute('scale',{x:2, y:2, z:2});
+            plane3.setAttribute('geometry', {'height':2,
                                                'width':6,});
-            plane2.setAttribute('text',{'value': 'WiFi Mesh','color':'black','align': 'center','width': 15});
+            plane3.setAttribute('text',{'value': 'WiFi Mesh','color':'black','align': 'center','width': 15});
            //Alipi
-            var entity2 = document.createElement('a-entity');
-            var plane2 = document.createElement('a-plane');
-            sceneE1.appendChild(entity2);
-            entity2.appendChild(plane2);
-            entity2.setAttribute('position',{x:14.591, y:4.646, z:-17.652});
-            entity2.setAttribute('scale',{x:2, y:2, z:2});
-            plane2.setAttribute('geometry', {'height':2,
+            var entity4 = document.createElement('a-entity');
+            var plane4 = document.createElement('a-plane');
+            sceneE1.appendChild(entity4);
+            homeContent.appendChild(entity4);
+            entity4.appendChild(plane4);
+            entity4.setAttribute('position',{x:14.591, y:4.646, z:-17.652});
+            entity4.setAttribute('scale',{x:2, y:2, z:2});
+            plane4.setAttribute('geometry', {'height':2,
                                                'width':6,});
-            plane2.setAttribute('text',{'value': 'Alipi','color':'black','align': 'center','width': 15});
+            plane4.setAttribute('text',{'value': 'Alipi','color':'black','align': 'center','width': 15});
              //Augment real space
-            var entity2 = document.createElement('a-entity');
-            var plane2 = document.createElement('a-plane');
-            sceneE1.appendChild(entity2);
-            entity2.appendChild(plane2);
-            entity2.setAttribute('position',{x:14.591, y:-1.972, z:-17.652});
-            entity2.setAttribute('scale',{x:2, y:2, z:2});
-            plane2.setAttribute('geometry', {'height':2,
+            var entity5 = document.createElement('a-entity');
+            var plane5 = document.createElement('a-plane');
+            sceneE1.appendChild(entity5);
+            homeContent.appendChild(entity5);
+            entity5.appendChild(plane5);
+            entity5.setAttribute('position',{x:14.591, y:-1.972, z:-17.652});
+            entity5.setAttribute('scale',{x:2, y:2, z:2});
+            plane5.setAttribute('geometry', {'height':2,
                                                'width':6,});
-            plane2.setAttribute('text',{'value': 'Augment real space','color':'black','align': 'center','width': 15});
+            plane5.setAttribute('text',{'value': 'Augment real space','color':'black','align': 'center','width': 15});
             //Semantic web
-            var entity2 = document.createElement('a-entity');
-            var plane2 = document.createElement('a-plane');
-            sceneE1.appendChild(entity2);
-            entity2.appendChild(plane2);
-            entity2.setAttribute('position',{x:14.591, y:-9.063, z:-17.652});
-            entity2.setAttribute('scale',{x:2, y:2, z:2});
-            plane2.setAttribute('geometry', {'height':2,
+            var entity6 = document.createElement('a-entity');
+            var plane6 = document.createElement('a-plane');
+            sceneE1.appendChild(entity6);
+            homeContent.appendChild(entity6);
+            entity6.appendChild(plane6);
+            entity6.setAttribute('position',{x:14.591, y:-9.063, z:-17.652});
+            entity6.setAttribute('scale',{x:2, y:2, z:2});
+            plane6.setAttribute('geometry', {'height':2,
                                                'width':6,});
-            plane2.setAttribute('text',{'value': 'Semantic web','color':'black','align': 'center','width': 15});
+            plane6.setAttribute('text',{'value': 'Semantic web','color':'black','align': 'center','width': 15});
           });
         
         //Contact Button click event
