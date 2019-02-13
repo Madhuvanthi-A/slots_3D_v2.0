@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>aframe</title>
+	<title>Slots3D</title>
 	<script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
 	<script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
@@ -18,13 +18,19 @@
 		    <!--Images-->
 		    <img id="logo" src="assets/logo/logo.gif"/>
         <img id="logoProbir" src="assets/logo/logo_probir.jpg"/>
-			  <img id="pano" src="assets/pano/pano.JPG"/>
+			  <img id="gateway" src="assets/pano/gateway.JPG"/>
+        <img id="doorway" src="assets/pano/doorway.JPG"/>
+        <img id="frontoffice" src="assets/pano/front_office.JPG"/>
+        <img id="office" src="assets/pano/office.JPG"/>
         <!--Home screen icons-->
         <img id="vol" src="assets/icons/vol.png">
         <img id="menu" src="assets/icons/menu.png">
         <img id="locn" src="assets/icons/locn.png">
         <img id="help" src="assets/icons/help.svg">
         <img id="remove" src="assets/icons/remove.png">
+        <img id="upArrow" src="assets/icons/up_arrow.svg">
+        <img id="rightArrow" src="assets/icons/right_arrow.png">
+        <img id="leftArrow" src="assets/icons/left_arrow.png">
 
 			  <!--Script-->
 			  <script id="circle" type="text/html">
@@ -39,18 +45,33 @@
     <a-entity visible="true" look-controls>
       <a-entity splash layout="type: line; margin: 1.5" scale="4 4 4" position="0 0 -8" width="1">
         <a-entity id="go_button" template="src: #circle" data-src="#logo" data-thumb="#logo">
-          <a-animation attribute="position" scale="1 1 1" to="-15 7 -8" begin="click"></a-animation>
+          <a-animation attribute="position" scale="1 1 1" to="-15 7 -8" begin="click" repeat="0"></a-animation>
         </a-entity>
+      </a-entity>
+    </a-entity>
+
+    <a-entity pano_nav id="pano360" visible="false">
+      <!--360-degree image.-->
+      <!--Gateway entrance 360-degree image.-->
+      <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
+        <a-sky id="gateway_entrance" src="#gateway" rotation="-15.740 -12.842 3.090"></a-sky>
+      </a-entity>
+      <!--UpArrow Navigation-->
+      <a-entity scale="0.4 0.4 0.4" position="0.468 -2.243 -10.800" width="2.5">
+        <a-entity id="gateway_nav" template="src: #circle" data-src="#upArrow" data-thumb="#upArrow" hover-text="value: I am hovered."></a-entity>
+      </a-entity>
+      <!--RightArrow Navigation-->
+      <a-entity scale="0.4 0.4 0.4" position="-1.768 0.912 -9.130" width="2.5">
+        <a-entity id="doorway_nav" template="src: #circle" data-src="#rightArrow" data-thumb="#rightArrow" hover-text="value: I am hovered." visible="false"></a-entity>
+      </a-entity>
+      <!--LeftArrow Navigation-->
+      <a-entity scale="0.4 0.4 0.4" position="-1.768 0.912 -9.049" width="2.5">
+        <a-entity id="front_office_nav" visible="false" template="src: #circle" data-src="#leftArrow" data-thumb="#leftArrow" hover-text="value: I am hovered."></a-entity>
       </a-entity>
     </a-entity>
 
     <!--Home screen-->
     <a-entity id="home_page" visible="false">
-      <!--360-degree image.-->
-      <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
-        <a-sky id="image-360" src="#pano" rotation="0 210 0"></a-sky>
-      </a-entity>
-
       <!--Home screen-->
       <a-entity homescreen look-controls>
         <!--Icons-->
@@ -67,64 +88,86 @@
           <a-entity id="locn_button" template="src: #circle" data-src="#locn" data-thumb="#locn"></a-entity>
         </a-entity>
 
+
+        <!--Menu page-->
+        <a-entity id="menu_page" visible="false">
+          <a-entity layout="type: line; margin: 1.5" position="-5.635 0.051 -7.017" scale="1 1 1">
+            <a-entity id="janastu_button" text="value: Janastu; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: circle; radius: 1" material="side: double"></a-entity>
+          </a-entity>
+          <a-entity layout="type: line; margin: 1.5" position="-0.294 0.058 -7.066" scale="1 1 1">
+            <a-entity id="projects_button" text="value: Projects; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: circle; radius: 1" material="side: double"></a-entity>
+          </a-entity>
+          <a-entity layout="type: line; margin: 1.5" position="5.321 0.063 -7.103" scale="1 1 1">
+            <a-entity id="contact_button" text="value: Contact; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: circle; radius: 1" material="side: double"></a-entity>
+          </a-entity>
+        </a-entity>
+        
         <!--Menu layout--> 
-        <a-entity id="content_layout" visible="true">
           <!--Create a plane with remove button-->
-          <a-entity background_layout id="contentbg">
+          <a-entity id="content_layout" visible="true">
             <a-plane color="#CCC" height="20" width="35" position="-0.5 0 -10" scale="0.5 0.5 0.5" material="color: #f09138"></a-plane>
               <a-entity layout="type: line; margin: 1.5" scale="0.373 0.373 0.373" position="6 3.5 -8" width="2.5">
                 <a-entity id="remove_button" template="src: #circle" data-src="#remove" data-thumb="#remove"></a-entity>
               </a-entity>
-          </a-entity>
+          </a-entity>      
 
           <!--About content-->
-          <a-entity id="about_content" visible="true">
+          <a-entity class="menucontent" id="about_content" visible="true">
             <a-entity content text="value: Servelots is a web service provider for Small to Medium Enterprises. Servelots was founded in 1999 by a group of Computer Scientists who wanted to provide a highly cost effective but user friendly software for SME's with a special focus on the organizations working in the social development sectors.; color: #f54336" position="-0.5 2 -10" scale="12 12 12"></a-entity>
           </a-entity>
-        </a-entity>
-        <!--Menu page-->
-        <a-entity id="menu_page">
-          <a-entity layout="type: line; margin: 1.5" position="-5.635 0.051 -7.017" scale="1 1 1">
-            <a-entity text="value: Janastu; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: circle; radius: 1" material="side: double"></a-entity>
-          </a-entity>
-          <a-entity layout="type: line; margin: 1.5" position="-0.294 0.058 -7.066" scale="1 1 1">
-            <a-entity text="value: Projects; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: circle; radius: 1" material="side: double"></a-entity>
-          </a-entity>
-          <a-entity layout="type: line; margin: 1.5" position="5.321 0.063 -7.103" scale="1 1 1">
-            <a-entity text="value: Contact; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: circle; radius: 1" material="side: double"></a-entity>
-          </a-entity>
-        </a-entity>
-      </a-entity>
 
-      <!---->
-      <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="-1 5 -35"  rotation="0 -150.000 0" width="2.5">
-            <a-entity id="logoProbir_button" template="src: #plane" data-src="#logoProbir" data-thumb="#logoProbir"></a-entity>
-      </a-entity>
-    <!--3D Box-->
-        <a-entity layout="type: line; margin: 1.5" position="2.068 3 -7.020" scale="1 1 1">
-            <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-              <a-animation attribute="position"  to="0.00 -5 0.000" begin="6000" delay="5000" dur="9000"></a-animation>
+          <!--Janastu content-->
+          <a-entity class="menucontent" id="janastu_content" visible="false">
+            <a-entity content text="value: Janastu, a non-profit organisation, has been providing Free Open source Software Solutions and support (FOSS) to small non-profits (NPOs/NGOs) since 2002. This includes one-on-one consulting regarding their information management needs, building their online and offline knowledge bases, providing support to their projects by designing web-sites, configuring news-filters, helping them migrate to open source solutions, help deal with localization and Indian language issues, geographic information collection and necessary R&D..; color: #f54336" position="-0.5 2 -10" scale="12 12 12"></a-entity>
+          </a-entity>
+
+          <!--Project details-->
+          <!--a-entity>
+            <a-entity layout="type: line; margin: 1.5" position="-5.635 0.051 -7.017" scale="1 1 1">
+              <a-entity id="janastu_button" text="value: Janastu; color: black; position: -0.5 2 -10; scale: 12 12 12; width: 8; align: center;" geometry="primitive: plane; radius: 1" material="side: double"></a-entity>
             </a-entity>
+          </a-entity-->
+          <a-entity id="map" visible="false"></a-entity>
+      </a-entity><!--End of homeScreen-->
+
+    </a-entity><!--End of homescreen-->
+
+    <!--Office screen-->
+    <a-entity id="office_view" visible="false">
+      
+        <!--Dragon image-->
+        <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="-1 9.671 -35"  rotation="-1.324 -21.727 0.765" width="2.5">
+              <a-entity id="logoProbir_button" template="src: #plane" data-src="#logoProbir" data-thumb="#logoProbir"></a-entity>
         </a-entity>
-        <a-entity layout="type: line; margin: 1.5" position="2.068 6 -7.020" scale="1 1 1">
-            <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-              <a-animation attribute="position"  to="0.00 -7.717 0.000" begin="8000" delay="5000" dur="9000"></a-animation>
-            </a-entity>
-        </a-entity>
-        <a-entity layout="type: line; margin: 1.5" position="2.068 8 -7.020" scale="1 1 1">
-            <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-              <a-animation attribute="position"  to="0.00 -9.447 0.000" begin="10000" delay="5000" dur="9000"></a-animation>
-            </a-entity>
-        </a-entity>
-        <a-entity layout="type: line; margin: 1.5" position="2.068 10 -7.020" scale="1 1 1">
-            <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-              <a-animation attribute="position"  to="-0.193 -11.157 0.000" begin="12000" delay="5000" dur="9000"></a-animation>
-            </a-entity>
-        </a-entity>
-    </a-entity>
+      <!--3D Box-->
+          <a-entity layout="type: line; margin: 1.5" position="2.068 3 -7.020" scale="1 1 1">
+              <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 -3.535"  rotation="0 50.000 0">
+                <a-animation attribute="position"  to="-0.036 -6.030 -3.627" begin="6000" delay="5000" dur="9000"></a-animation>
+              </a-entity>
+          </a-entity>
+          <a-entity layout="type: line; margin: 1.5" position="2.068 6 -7.020" scale="1 1 1">
+              <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
+                <a-animation attribute="position"  to="-0.517 -8.791 -3.560" begin="8000" delay="5000" dur="9000"></a-animation>
+              </a-entity>
+          </a-entity>
+          <a-entity layout="type: line; margin: 1.5" position="2.068 8 -7.020" scale="1 1 1">
+              <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
+                <a-animation attribute="position"  to="-0.138 -11.163 -5.250" begin="10000" delay="5000" dur="9000"></a-animation>
+              </a-entity>
+          </a-entity>
+          <a-entity layout="type: line; margin: 1.5" position="2.068 10 -7.020" scale="1 1 1">
+              <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
+                <a-animation attribute="position"  to="-0.207 -12.371 -3.732" begin="12000" delay="5000" dur="9000"></a-animation>
+              </a-entity>
+          </a-entity>
+
+    </a-entity><!--End of Office screen-->
 
   	<!--Camera plus Cursor-->
   	<a-camera id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-camera>
 	</a-scene>
+  <!--script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=12c33b41c3ad464da7883949fd0b71d8&callback=initMap">
+  </script-->
 </body>
 </html>
