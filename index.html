@@ -6,7 +6,6 @@
 	<script src="https://unpkg.com/aframe-template-component@3.x.x/dist/aframe-template-component.min.js"></script>
     <script src="https://unpkg.com/aframe-layout-component@3.x.x/dist/aframe-layout-component.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -22,6 +21,17 @@
         <img id="doorway" src="assets/pano/doorway.JPG"/>
         <img id="frontoffice" src="assets/pano/front_office.JPG"/>
         <img id="office" src="assets/pano/office.JPG"/>
+        <!--Craft-->
+        <img id="craft" src="assets/img/craft/craft.jpg"/>
+        <img id="crafts" src="assets/img/craft/craft1.jpg"/>
+        <img id="basket" src="assets/img/craft/3.jpg"/>
+        <img id="bags" src="assets/img/craft/11.jpg"/>
+        <img id="bottle" src="assets/img/craft/12.jpg"/>
+        <!--Patachitra-->
+        <img id="patha1" src="assets/img/patachitra/4.jpg"/>
+        <img id="patha2" src="assets/img/patachitra/3.jpg"/>
+        <img id="patha3" src="assets/img/patachitra/1.jpg"/>
+        <img id="patha4" src="assets/img/patachitra/2.jpg"/>
         <!--Home screen icons-->
         <img id="vol" src="assets/icons/vol.png">
         <img id="menu" src="assets/icons/menu.png">
@@ -32,12 +42,17 @@
         <img id="rightArrow" src="assets/icons/right_arrow.png">
         <img id="leftArrow" src="assets/icons/left_arrow.png">
 
+        <!--a-asset-item id="3d_radio" src="3d_obj/radio/Radio.3ds"></a-asset-item-->
+
 			  <!--Script-->
 			  <script id="circle" type="text/html">
 				  <a-entity class="link" geometry="primitive: circle; radius: 1" material="side: double; src: ${thumb}"></a-entity>
 			  </script>
         <script id="plane" type="text/html">
           <a-entity class="link" geometry="primitive: plane; height: 10; width: 10" material="side: double; src: ${thumb}"></a-entity>
+        </script>
+        <script id="data_image" type="text/html">
+          <a-entity class="link" geometry="primitive: plane; height: 20; width: 22" material="side: double; src: ${thumb}"></a-entity>
         </script>
 		</a-assets>
 
@@ -54,19 +69,43 @@
       <!--360-degree image.-->
       <!--Gateway entrance 360-degree image.-->
       <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
-        <a-sky id="gateway_entrance" src="#gateway" rotation="-15.740 -12.842 3.090"></a-sky>
+        <a-sky id="officepanoview" src="#office" rotation="0 -130.590 -0.322"></a-sky>
+        <!--a-sky id="frontoffpanoView" src="#frontoffice" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="doorpanoView" src="#doorway" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="gatewaypanoView" src="#gateway" rotation="0 -130.590 -0.322" visible="false"></a-sky-->
+      </a-entity>
+      <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
+        <a-sky id="frontoffpanoview" src="#frontoffice" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <!--a-sky id="frontoffpanoView" src="#frontoffice" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="doorpanoView" src="#doorway" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="gatewaypanoView" src="#gateway" rotation="0 -130.590 -0.322" visible="false"></a-sky-->
+      </a-entity>
+      <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
+        <a-sky id="doorpanoview" src="#doorway" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <!--a-sky id="doorpanoView" src="#frontoffice" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="doorpanoView" src="#doorway" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="gatewaypanoView" src="#gateway" rotation="0 -130.590 -0.322" visible="false"></a-sky-->
+      </a-entity>
+      <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
+        <a-sky id="gatewaypanoview" src="#gateway" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <!--a-sky id="gatewaypanoView" src="#frontoffice" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="doorpanoView" src="#doorway" rotation="0 -130.590 -0.322" visible="false"></a-sky>
+        <a-sky id="gatewaypanoView" src="#gateway" rotation="0 -130.590 -0.322" visible="false"></a-sky-->
       </a-entity>
       <!--UpArrow Navigation-->
-      <a-entity scale="0.4 0.4 0.4" position="0.468 -2.243 -10.800" width="2.5">
-        <a-entity id="gateway_nav" template="src: #circle" data-src="#upArrow" data-thumb="#upArrow" hover-text="value: I am hovered."></a-entity>
-      </a-entity>
+      <a-entity scale="0.833 0.833 0.833" position="27.331 2.940 14.106" rotation="0 -76.510 0" width="2.5">
+        <a-entity id="office_nav" template="src: #circle" data-src="#upArrow" data-thumb="#upArrow" hover-text="value: frontoffice">
+          <!--a-animation attribute="text: value: frontoffice; color: #f54336; width:10" value="frontoffice" color= "#f54336" width="14" position="97.664 5.707 -60.823" scale="14 14 14" begin="mouseenter" repeat="1"></a-animation-->
+        </a-entity>
+        <!--a-entity id="ff_text" visible="false" text="value: frontoffice; color: #f54336; width:10" scale="14 14 14" position="97.664 5.707 -60.823" rotation="0 -47.160 0"></a-entity>
+      </a-entity-->
       <!--RightArrow Navigation-->
-      <a-entity scale="0.4 0.4 0.4" position="-1.768 0.912 -9.130" width="2.5">
-        <a-entity id="doorway_nav" template="src: #circle" data-src="#rightArrow" data-thumb="#rightArrow" hover-text="value: I am hovered." visible="false"></a-entity>
+      <a-entity scale="-2.806 -2.806 -2.806" position="-71.803 0.625 -28.006" rotation="-12.316 7.268 -24.358" width="2.5">
+        <a-entity id="doorway_nav" template="src: #circle" data-src="#rightArrow" data-thumb="#rightArrow" hover-text="value: doorway." visible="false"></a-entity>
       </a-entity>
       <!--LeftArrow Navigation-->
-      <a-entity scale="0.4 0.4 0.4" position="-1.768 0.912 -9.049" width="2.5">
-        <a-entity id="front_office_nav" visible="false" template="src: #circle" data-src="#leftArrow" data-thumb="#leftArrow" hover-text="value: I am hovered."></a-entity>
+      <a-entity scale="1.208 0.984 0.100" position="-7.169 -3.170 47.216" rotation="0.081 -6.288 -89.261" width="2.5">
+        <a-entity id="gateway_nav" visible="false" template="src: #circle" data-src="#leftArrow" data-thumb="#leftArrow" hover-text="value: I am hovered."></a-entity>
       </a-entity>
     </a-entity>
 
@@ -105,7 +144,7 @@
         <!--Menu layout--> 
           <!--Create a plane with remove button-->
           <a-entity id="content_layout" visible="true">
-            <a-plane color="#CCC" height="20" width="35" position="-0.5 0 -10" scale="0.5 0.5 0.5" material="color: #f09138"></a-plane>
+            <a-plane color="#CCC" height="20" width="35" position="-0.5 0 -10" scale="0.5 0.5 0.5" transparent="true" opacity="0.5"></a-plane>
               <a-entity layout="type: line; margin: 1.5" scale="0.373 0.373 0.373" position="6 3.5 -8" width="2.5">
                 <a-entity id="remove_button" template="src: #circle" data-src="#remove" data-thumb="#remove"></a-entity>
               </a-entity>
@@ -113,21 +152,25 @@
 
           <!--About content-->
           <a-entity class="menucontent" id="about_content" visible="true">
-            <a-entity content text="value: Servelots is a web service provider for Small to Medium Enterprises. Servelots was founded in 1999 by a group of Computer Scientists who wanted to provide a highly cost effective but user friendly software for SME's with a special focus on the organizations working in the social development sectors.; color: #f54336" position="-0.5 2 -10" scale="12 12 12"></a-entity>
+            <a-entity content text="value: ABOUT; color: #a31214; align:center;" material="text-decoration: underline;" position="-0.500 3.574 -10" scale="24 24 24"></a-entity>
+            <a-entity content text="value: Servelots is a web service provider for Small to Medium Enterprises. Servelots was founded in 1999 by a group of Computer Scientists who wanted to provide a highly cost effective but user friendly software for SME's with a special focus on the organizations working in the social development sectors.; color: #0f215e; align:center;" position="-0.500 -0.142 -10" scale="16.522 16.522 17.428"></a-entity>
           </a-entity>
 
           <!--Janastu content-->
           <a-entity class="menucontent" id="janastu_content" visible="false">
-            <a-entity content text="value: Janastu, a non-profit organisation, has been providing Free Open source Software Solutions and support (FOSS) to small non-profits (NPOs/NGOs) since 2002. This includes one-on-one consulting regarding their information management needs, building their online and offline knowledge bases, providing support to their projects by designing web-sites, configuring news-filters, helping them migrate to open source solutions, help deal with localization and Indian language issues, geographic information collection and necessary R&D..; color: #f54336" position="-0.5 1.216 -10" scale="12 12 12"></a-entity>
+            <a-entity content text="value: JANASTU; color: #a31214; align:center;" material="text-decoration: underline;" position="-0.500 4.009 -10" scale="24 24 24"></a-entity>
+            <a-entity content text="value: Janastu, a non-profit organisation, has been providing Free Open source Software Solutions and support (FOSS) to small non-profits (NPOs/NGOs) since 2002. This includes one-on-one consulting regarding their information management needs, building their online and offline knowledge bases, providing support to their projects by designing web-sites, configuring news-filters, helping them migrate to open source solutions, help deal with localization and Indian language issues, geographic information collection and necessary R&D..;  color: #0f215e; align:center;" position="-0.500 -0.142 -10" scale="11.814 11.814 12.461"></a-entity>
           </a-entity>
           <!--Janastu content-->
           <a-entity class="menucontent" id="contact_content" visible="false">
-            <a-entity content text="value: Servelots Infotech Pvt. Ltd. 3354 KR Road,Bangalore, 560070,Karnataka, INDIA Ph:+91-80-2676-2963 totomaster @ servelots.com; color: #f54336" position="-0.5 1.216 -10" scale="12 12 12"></a-entity>
+            <a-entity content text="value: CONTACT; color: #a31214; align:center;" material="text-decoration: underline;" position="-0.500 3.574 -10" scale="24 24 24"></a-entity>
+            <a-entity content text="value: Servelots Infotech Pvt. Ltd. 3354 KR Road,Bangalore, 560070,Karnataka, INDIA Ph:+91-80-2676-2963 totomaster @ servelots.com; color: #0f215e" position="-0.5 1.216 -10" scale="14.925 14.925 14.925"></a-entity>
           </a-entity>
 
           <!--Help content-->
           <a-entity class="menucontent" id="janastu_content" visible="false">
-            <a-entity content text="value: INSTRUCTIONS!; color: #f54336" position="-0.5 1.216 -10" scale="12 12 12"></a-entity>
+            <a-entity content text="value: INSTRUCTIONS!; color: #a31214; align:center;" material="text-decoration: underline;" position="-0.500 3.574 -10" scale="24 24 24"></a-entity>
+            <a-entity content text="value: ; color: #f54336" position="-0.5 1.216 -10" scale="12.710 12.710 13.407"></a-entity>
           </a-entity>
 
           <!--Project details-->
@@ -142,35 +185,110 @@
     </a-entity><!--End of homescreen-->
 
     <!--Office screen-->
-    <a-entity id="office_view" visible="false">
+    <a-entity  position="0 1.5 -4" id="office_view" visible="false">
+      <!--Craft-->
+      <a-entity layout="type: line; margin: 1.5" scale="0.513 0.513 0.513" position="-4.102 7.460 -36.610"  rotation="0 -26.201 0">
+        <a-circle src="#craft" id="craft_button" position="-3 0 0" translate="0 1.75 0" radius="1.75"  roughness="0.2"><a-animation attribute='scale' dur='500' direction='alternate' from='1 1 1' to='1.1 1.1 1.1' begin='200' repeat='indefinite'></a-animation>
+        </a-circle>
+      </a-entity>
+      <!--patacitra-->
+      <a-entity layout="type: line; margin: 1.5" scale="0.513 0.513 0.513" position="4.267 7.460 -31.242"  rotation="0 -26.201 0">
+        <a-circle src="#patha3" id="patacitra_button" position="-3 0 0" translate="0 1.75 0" radius="1.75"  roughness="0.2"><a-animation attribute='scale' dur='500' direction='alternate' from='1 1 1' to='1.1 1.1 1.1' begin='200' repeat='indefinite'></a-animation>
+        </a-circle>
+      </a-entity>
+      <a-entity officeCanvas position="6 3.5 -8"></a-entity>
       
         <!--Dragon image-->
-        <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="-1 9.671 -35"  rotation="-1.324 -21.727 0.765" width="2.5">
+        <a-entity layout="type: line; margin: 1.5" scale="1 1 1" position="4.936 10.508 -35"  rotation="-1.361 -32.784 0.918" width="2.5">
               <a-entity id="logoProbir_button" template="src: #plane" data-src="#logoProbir" data-thumb="#logoProbir"></a-entity>
         </a-entity>
       <!--3D Box-->
-          <a-entity layout="type: line; margin: 1.5" position="2.068 3 -7.020" scale="1 1 1">
+          <a-entity layout="type: line; margin: 1.5" position="0.916 3 -7.020" scale="1 1 1">
               <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 -3.535"  rotation="0 50.000 0">
-                <a-animation attribute="position"  to="-0.036 -6.030 -3.627" begin="6000" delay="5000" dur="9000"></a-animation>
+                <a-animation attribute="position"  to="0.024 -6.484 -1.587" begin="6000" delay="5000" dur="9000"></a-animation>
               </a-entity>
           </a-entity>
-          <a-entity layout="type: line; margin: 1.5" position="2.068 6 -7.020" scale="1 1 1">
+          <a-entity layout="type: line; margin: 1.5" position="0.916 6 -7.020" scale="1 1 1">
               <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-                <a-animation attribute="position"  to="-0.517 -8.791 -3.560" begin="8000" delay="5000" dur="9000"></a-animation>
+                <a-animation attribute="position"  to="-0.364 -8.680 0.080" begin="8000" delay="5000" dur="9000"></a-animation>
               </a-entity>
           </a-entity>
-          <a-entity layout="type: line; margin: 1.5" position="2.068 8 -7.020" scale="1 1 1">
+          <a-entity layout="type: line; margin: 1.5" position="0.916 8 -7.020" scale="1 1 1">
               <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-                <a-animation attribute="position"  to="-0.138 -11.163 -5.250" begin="10000" delay="5000" dur="9000"></a-animation>
+                <a-animation attribute="position"  to="-0.448 -11.210 -0.076" begin="10000" delay="5000" dur="9000"></a-animation>
               </a-entity>
           </a-entity>
-          <a-entity layout="type: line; margin: 1.5" position="2.068 10 -7.020" scale="1 1 1">
+          <a-entity layout="type: line; margin: 1.5" position="0.916 10 -7.020" scale="1 1 1">
               <a-entity geometry="primitive: box" material="side: double; color: blue;" wireframe scale="1 0.2 0.5" position="0.343 0.000 0.000"  rotation="0 50.000 0">
-                <a-animation attribute="position"  to="-0.207 -12.371 -3.732" begin="12000" delay="5000" dur="9000"></a-animation>
+                <a-animation attribute="position"  to="-0.251 -12.588 0.623" begin="12000" delay="5000" dur="9000"></a-animation>
               </a-entity>
           </a-entity>
 
     </a-entity><!--End of Office screen-->
+
+    <!--a-obj-model src="#3d_radio"></a-obj-model-->
+
+    <!--Data entity layout-->
+    <a-entity id="data_layout" look-controls overflow= "scroll" visible="false">
+      <a-plane color="#CCC" height="13" width="8.200" position="-12.141 -0.145 -10.000" scale="0.802 0.802 0.802" transparent="true" opacity="0.5"></a-plane>
+      <a-plane color="#CCC" height="13" width="8.200" position="-3.970 -0.145 -10.000" scale="0.802 0.802 0.802" transparent="true" opacity="0.5"></a-plane>
+      <a-plane color="#CCC" height="13" width="8.200" position="4.179 -0.145 -10.000" scale="0.802 0.802 0.802" transparent="true" opacity="0.5"></a-plane>
+      <a-plane color="#CCC" height="13" width="8.200" position="12.319 -0.145 -10.000" scale="0.802 0.802 0.802" transparent="true" opacity="0.5"></a-plane>
+      <a-entity layout="type: line; margin: 1.5" scale="0.373 0.373 0.373" position="13.090 6.232 -8" width="2.5">
+      <a-entity id="data_remove" template="src: #circle" data-src="#remove" data-thumb="#remove"></a-entity>
+      </a-entity> 
+    </a-entity>
+    <!--Craft photos-->
+    <a-entity id="craft_data" class="data_info" visible="false" look-controls>
+      <a-entity text="value: Mitan Handicrafts Development; color: #d6a32d; align:center;" position="-0.217 12.173 -18.134"  scale="42.147 42.147 42.147"></a-entity>
+
+      <a-entity color="#CCC" height="8" width="8.200" position="-13.466 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="3.106 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#crafts" data-thumb="#crafts"></a-entity>
+          <a-entity text="value: Basket Weaving; color: #a31214; align:center;"position="4.561 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Conducting workshops to escalate weaving; color: #0f215e; align:center;" position="4.386 -13.177 1.479"  scale="13.376 24.496 22.343"></a-entity>
+      </a-entity>
+      <a-entity color="#CCC" height="11.520" width="8.200" position="-8.103 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="8.426 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#basket" data-thumb="#basket"></a-entity>
+          <a-entity text="value: Wedding Gift Boxs; color: #a31214; align:center;" position="8.809 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Bullrush and Areca Wedding gifts boxs; color: #0f215e; align:center;" position="8.648 -13.177 1.479"  scale="13.376 24.496 22.343"></a-entity>
+      </a-entity>
+      <a-entity color="#CCC" height="8" width="8.200" position="-2.710 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="13.586 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#bags" data-thumb="#bags"></a-entity>
+          <a-entity  text="value: Areca Products; color: #a31214; align:center;" position="13.076 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Areca products Designer Rrange; color: #0f215e; align:center;" position="13.143 -13.177 1.479"  scale="14.361 26.298 23.987"></a-entity>
+      </a-entity>
+      <a-entity color="#CCC" height="8" width="8.200" position="2.675 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="18.794 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#bottle" data-thumb="#bottle"></a-entity>
+          <a-entity text="value: Areca products; color: #a31214; align:center;" position="17.739 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Areca products Designer Rrange; color: #0f215e; align:center;" position="17.854 -13.177 1.479"  scale="14.361 26.298 23.987"></a-entity>
+      </a-entity>
+    </a-entity>
+
+    <!--Patachitra photos-->
+    <a-entity id="patrachitra_data" class="data_info" visible="false" look-controls>
+      <a-entity text="value: Pattachitra; color: #d6a32d; align:center;" position="-0.217 12.173 -18.134"  scale="42.147 42.147 42.147"></a-entity>
+
+      <a-entity color="#CCC" height="8" width="8.200" position="-13.466 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="3.106 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#patha1" data-thumb="#patha1"></a-entity>
+          <a-entity text="value: Mr.Probir; color: #a31214; align:center;"position="4.561 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Artists/Painters; color: #0f215e; align:center;" position="4.386 -13.177 1.479"  scale="13.376 24.496 22.343"></a-entity>
+      </a-entity>
+      <a-entity color="#CCC" height="11.520" width="8.200" position="-8.103 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="8.426 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#patha2" data-thumb="#patha2"></a-entity>
+          <a-entity text="value: Portrays the paintings ; color: #a31214; align:center;" position="8.809 -10.679 1.479"  scale="26.524 26.524 26.524"></a-entity>
+          <a-entity text="value:  Portrays the paintings; color: #0f215e; align:center;" position="8.648 -13.177 1.479"  scale="13.376 24.496 22.343"></a-entity>
+      </a-entity>
+      <a-entity color="#CCC" height="8" width="8.200" position="-2.710 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="13.586 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#patha3" data-thumb="#patha3"></a-entity>
+          <!--a-entity  text="value: Areca Products; color: #a31214; align:center;" position="13.076 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Areca products Designer Rrange; color: #0f215e; align:center;" position="13.143 -13.177 1.479"  scale="14.361 26.298 23.987"></a-entity-->
+      </a-entity>
+      <a-entity color="#CCC" height="8" width="8.200" position="2.675 4.038 -10.000" scale="0.5 0.5 0.5">
+        <a-entity color="#CCC" height="9" width="9" position="18.794 -3.808 0.433" scale="0.5 0.5 0.5" template="src: #data_image" data-src="#patha4" data-thumb="#patha4"></a-entity>
+          <!--a-entity text="value: Areca products; color: #a31214; align:center;" position="17.739 -10.679 1.479"  scale="31.380 31.380 31.380"></a-entity>
+          <a-entity text="value: Areca products Designer Rrange; color: #0f215e; align:center;" position="17.854 -13.177 1.479"  scale="14.361 26.298 23.987"></a-entity-->
+      </a-entity>
+    </a-entity>
 
   	<!--Camera plus Cursor-->
   	<a-camera id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-camera>

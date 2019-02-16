@@ -4,10 +4,12 @@
         var go = document.querySelector('#go_button');//initializing go button entity
         var menu = document.querySelector('#home_page');//initializing home page entity
         var pano = document.querySelector('#pano360');
+        var officeView = document.querySelector('#office_view');
         //go button click event
         go.addEventListener('click', () => { 
         menu.setAttribute('visible', true);//toggle visibility
         pano.setAttribute('visible', true);
+        officeView.setAttribute('visible', true);
         });
 
         
@@ -17,30 +19,50 @@
 //360 Navigation
 AFRAME.registerComponent('pano_nav', {
   init: function () {
-    var gatewayNav = document.querySelector('#gateway_nav');//initializing gateway_nav button entity
-    var gatewayEntrance = document.querySelector('#gateway_entrance');
+    var officeNav = document.querySelector('#office_nav');//initializing gateway_nav button entity
     var doorwayNav = document.querySelector('#doorway_nav');
-    var frontoffNav = document.querySelector('#front_office_nav');
+    var gatewayNav = document.querySelector('#gateway_nav');
     var officeView = document.querySelector('#office_view');
+    //360 pano
+    var officepanoView = document.querySelector('#officepanoview');
+    var frontoffpanoView = document.querySelector('#frontoffpanoview');
+    var doorpanoView = document.querySelector('#doorpanoview');
+    var gatewaypanoView = document.querySelector('#gatewaypanoview');
+
+    /*
+    document.querySelector('#office_nav').addEventListener('mouseenter',function(){
+      document.querySelector('#ff_text').setAttribute('visible',true);
+      console.log("ff_text");
+    });*/
     //gateway Nav button click event
-    gatewayNav.addEventListener('click', () => { 
-    gatewayEntrance.setAttribute('src', '#doorway');
-    gatewayEntrance.setAttribute('rotation',{x:-1.259, y:-81.600, z:7.516});
-    gatewayNav.setAttribute('visible', false);
+    officeNav.addEventListener('click', () => { 
+    officeView.setAttribute('visible', false);
+    officepanoView.setAttribute('visible', false);
+    frontoffpanoView.setAttribute('visible', true);
+    //skyView.setAttribute('rotation',{x:0.658, y:-120.986, z:0.262});
+    officeNav.setAttribute('visible', false);
+    console.log("officeNav");
+    officeView.setAttribute('visible', false);
     doorwayNav.setAttribute('visible', true);
     });
     //doorway Nav button click event
     doorwayNav.addEventListener('click', ()=>{
-      gatewayEntrance.setAttribute('src', '#frontoffice');
-      gatewayEntrance.setAttribute('rotation',{x:0.658, y:-120.986, z:0.262});
+      //skyView.setAttribute('src', '#doorway');
+      //skyView.setAttribute('rotation',{x:-1.259, y:-81.600, z:7.516});
       doorwayNav.setAttribute('visible', false);
-      frontoffNav.setAttribute('visible', true);
+      frontoffpanoView.setAttribute('visible', false);
+      doorpanoView.setAttribute('visible', true);
+      console.log("doorwayNav");
+      gatewayNav.setAttribute('visible', true);
     });
     //front office Nav button click event
-    frontoffNav.addEventListener('click',()=>{
-      gatewayEntrance.setAttribute('src', '#office');
-      frontoffNav.setAttribute('visible', false);
-      officeView.setAttribute('visible', true);
+    gatewayNav.addEventListener('click',()=>{
+      //skyView.setAttribute('src', '#gateway');
+      console.log("frontoffNav");
+      gatewayNav.setAttribute('visible', false);
+      doorpanoView.setAttribute('visible', false);
+      gatewaypanoView.setAttribute('visible', true);
+      officeView.setAttribute('visible', false);
     });
     
   }
@@ -86,6 +108,10 @@ AFRAME.registerComponent('pano_nav', {
           var contactButton = document.querySelector('#contact_button');
           var locnButton = document.querySelector('#locn_button');
           var content = document.querySelectorAll('.menucontent');
+          var craftButton = document.querySelector('#craft_button');
+          var dataRemove = document.querySelector('#data_remove');
+          var patacitraButton = document.querySelector('#patacitra_button');
+          var dataInfo = document.querySelectorAll('.data_info');
           //var contentBg = document.getElementById('contentbg');
           
           //Menu Button click event
@@ -194,7 +220,7 @@ AFRAME.registerComponent('pano_nav', {
             plane6.setAttribute('geometry', {'height':2,
                                                'width':6,});
             plane6.setAttribute('text',{'value': 'Semantic web','color':'black','align': 'center','width': 15});
-          });
+         });
         
         //Contact Button click event
         contactButton.addEventListener('click',()=>{
@@ -203,7 +229,7 @@ AFRAME.registerComponent('pano_nav', {
            content.forEach(function(node){
               content[2].setAttribute('visible', true);
              });
-        }) 
+        }) ;
 
           //Help Button
           helpButton.addEventListener('click',()=>{
@@ -211,7 +237,7 @@ AFRAME.registerComponent('pano_nav', {
              content.forEach(function(node){
               content[3].setAttribute('visible', true);
              });
-          })
+          });
           //Map function
           /*locnButton.addEventListener('click', ()=>{
             function initMap(){
@@ -225,5 +251,84 @@ AFRAME.registerComponent('pano_nav', {
             var marker = new google.maps.Marker({position: uluru, map: map});
             console.log("map location")
           };*/
+          //craft button click
+          craftButton.addEventListener('click',()=>{
+             document.getElementById('data_layout').setAttribute('visible', true);
+             document.getElementById('craft_data').setAttribute('visible', true);
+             document.getElementById('home_page').setAttribute('visible', false);
+            console.log("craftlayout");
+          });
+
+          patacitraButton.addEventListener('click',()=>{
+            document.getElementById('data_layout').setAttribute('visible', true);
+             document.getElementById('patrachitra_data').setAttribute('visible', true);
+             document.getElementById('home_page').setAttribute('visible', false);
+          })
+
+          dataRemove.addEventListener('click',()=>{
+            document.getElementById('data_layout').setAttribute('visible', false);
+            //document.getElementById('craft_data').setAttribute('visible', false);
+            dataInfo.forEach(function (node){
+              node.setAttribute('visible', false);
+            //document.querySelector('.menucontent').setAttribute('visible', false);
+            document.querySelector('#content_layout').setAttribute('visible', false);
+            //console.log(menuContent,"contentLayout");
+            //console.log(node,"node");
+            });
+            
+            return false;
+            document.getElementById('home_page').setAttribute('visible', true);
+          });
+          //document.getElementById('someplane').style.width="13"
         }
     });    
+
+/*Craft canvas*/
+    AFRAME.registerComponent('officeCanvas', {
+        schema: {
+          across: {type: 'int', default: 3},
+          down: {type: 'int', default: 3},
+        },
+        init: function () {
+          const data = this.data;
+          const across = data.across;
+          const down = data.down;
+          const needed = across * down;
+          let id = 0;
+          for (let i = 0; i < needed; ++i) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            canvas.id = `c${id++}`;
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = `hsl(${i / needed * 360 | 0}deg,100%,50%)`;
+            ctx.fillRect(0, 0, 256, 256);
+            ctx.fillStyle = `hsl(${Math.random() * 360 | 0}deg,100%,80%)`;
+            ctx.fillStyle = 'black';
+            ctx.font = '200px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(i, 128, 128);
+            const elem = document.createElement('a-entity');
+            elem.setAttribute('geometry', {
+              primitive: 'plane',
+              height: 1,
+              width: 1,
+            });
+            elem.setAttribute('material', {
+              shader: 'flat',
+              src: `#${canvas.id}`,
+            });
+            this.el.appendChild(elem);
+            const x = i % across;
+            const y = i / across | 0;
+            const u = x / (across - 1);
+            const v = y / (down - 1);
+            const px = across * (u - .5);
+            const py = down * (v - .5);
+            const pz = 0;
+            elem.setAttribute('position', {x: px, y: py, z: pz});
+          }
+        }
+    });
