@@ -69,7 +69,7 @@ AFRAME.registerComponent('pano_nav', {
             //document.querySelector('.menucontent').setAttribute('visible', false);
             document.querySelector('#content_layout').setAttribute('visible', false);
             //console.log(menuContent,"contentLayout");
-            //console.log(node,"node");
+            console.log(node,"node");
             });
             
             return false;
