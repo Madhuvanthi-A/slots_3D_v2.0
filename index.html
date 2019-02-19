@@ -8,9 +8,9 @@
     <script src="https://unpkg.com/aframe-event-set-component@3.x.x/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/set_image.js"></script>
+    
 </head>
 <body>
 	<a-scene>
@@ -50,7 +50,7 @@
       </a-entity>
     </a-entity>
 
-    <a-entity pano_nav id="pano360" visible="false">
+    <a-entity pano_nav id="launch-first-sky" visible="false">
       <!--360-degree image.-->
       <!--Gateway entrance 360-degree image.-->
       <a-entity layout="type: line;" scale="1 1 1" position="0 0 -8">
@@ -71,7 +71,7 @@
     </a-entity>
 
     <!--Home screen-->
-    <a-entity id="home_page" visible="false">
+    <a-entity id="menu_tray" visible="false">
       <!--Home screen-->
       <a-entity id="homecontent" homescreen look-controls>
         <!--Icons-->
@@ -178,5 +178,7 @@
   <!--script async defer
   src="https://maps.googleapis.com/maps/api/js?key=12c33b41c3ad464da7883949fd0b71d8&callback=initMap">
   </script-->
+  <script src="js/set_image.js"></script>
+
 </body>
 </html>

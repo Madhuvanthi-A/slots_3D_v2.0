@@ -1,13 +1,54 @@
-//Visibility toggle
+
+document.onload = (function(){
+
+
+//Global Elements
+// Initial Launch screen and button
+var go = document.querySelector('#go_button');
+// All menu and action buttons
+var menu = document.querySelector('#menu_tray');
+//The first sphere and pano of the tour
+var firstPano = document.querySelector('#launch-first-sky');
+// Rest of the pano sphere's and their respective action buttons
+//[TODO: rename all id's and variable appropriately]
+var gatewayNav = document.querySelector('#gateway_nav');//initializing gateway_nav button entity
+var gatewayEntrance = document.querySelector('#gateway_entrance');
+var doorwayNav = document.querySelector('#doorway_nav');
+var frontoffNav = document.querySelector('#front_office_nav');
+var officeView = document.querySelector('#office_view');
+
+var removeButton = document.querySelector('#remove_button');
+var menuContent = document.querySelectorAll('.menucontent');
+
+
+var sceneE1 = document.querySelector('a-scene');
+var homeContent = document.querySelector('#homecontent')
+var menuButton = document.querySelector('#menu_button');
+var helpButton = document.querySelector('#help_button');
+var janastuButton = document.querySelector('#janastu_button');
+var projectsButton = document.querySelector('#projects_button');
+var contactButton = document.querySelector('#contact_button');
+var locnButton = document.querySelector('#locn_button');
+var content = document.querySelectorAll('.menucontent');
+
+
+var menuPage = document.getElementById('menu_page').getAttribute('visible');
+
+// LIST OF VIRTUAL LOCATIONS
+var locations = ["LAUNCH", "GATEWAY", "ENTRANCE", "CYCLE", "OFFICE"];
+// ACTIONS THAT TRIGGER CHANGE IN SCENE
+var actions = ["LOAD", "GO_TO_GATEWAY", "GO_TO_ENTRANCE", 
+                "GO_TO_CYCLE", "GO_TO_OFFICE"]
+
+//Splash screen component
     AFRAME.registerComponent('splash', {
       init: function () {
-        var go = document.querySelector('#go_button');//initializing go button entity
-        var menu = document.querySelector('#home_page');//initializing home page entity
-        var pano = document.querySelector('#pano360');
+        console.log("init", go);
+       
         //go button click event
         go.addEventListener('click', () => { 
         menu.setAttribute('visible', true);//toggle visibility
-        pano.setAttribute('visible', true);
+        firstPano.setAttribute('visible', true);
         });
 
         
@@ -17,11 +58,6 @@
 //360 Navigation
 AFRAME.registerComponent('pano_nav', {
   init: function () {
-    var gatewayNav = document.querySelector('#gateway_nav');//initializing gateway_nav button entity
-    var gatewayEntrance = document.querySelector('#gateway_entrance');
-    var doorwayNav = document.querySelector('#doorway_nav');
-    var frontoffNav = document.querySelector('#front_office_nav');
-    var officeView = document.querySelector('#office_view');
     //gateway Nav button click event
     gatewayNav.addEventListener('click', () => { 
     gatewayEntrance.setAttribute('src', '#doorway');
@@ -46,7 +82,7 @@ AFRAME.registerComponent('pano_nav', {
   }
 });
 
-//3D box
+//blue 3D boxes dropping on the table
     AFRAME.registerComponent('wireframe', {
         dependencies: ['material'],
         init: function () {
@@ -58,10 +94,11 @@ AFRAME.registerComponent('pano_nav', {
     AFRAME.registerComponent('homescreen', {
         //dependencies: ['material'],
         init: function () {
-          var removeButton = document.querySelector('#remove_button');
-            var menuContent = document.querySelectorAll('.menucontent');
+        /*  var removeButton = document.querySelector('#remove_button');
+            var menuContent = document.querySelectorAll('.menucontent');*/
 
           removeButton.addEventListener('click', () => {
+            //[TODO]: do same thing as i've done for the menuPage variable
             var contentLayout = document.querySelector('#content_layout').getAttribute('visible');
 
             menuContent.forEach(function (node){
@@ -77,7 +114,7 @@ AFRAME.registerComponent('pano_nav', {
         },
 
         update: function(){
-          var sceneE1 = document.querySelector('a-scene');
+         /* var sceneE1 = document.querySelector('a-scene');
           var homeContent = document.querySelector('#homecontent')
           var menuButton = document.querySelector('#menu_button');
           var helpButton = document.querySelector('#help_button');
@@ -86,23 +123,28 @@ AFRAME.registerComponent('pano_nav', {
           var contactButton = document.querySelector('#contact_button');
           var locnButton = document.querySelector('#locn_button');
           var content = document.querySelectorAll('.menucontent');
-          //var contentBg = document.getElementById('contentbg');
+          //var contentBg = document.getElementById('contentbg');*/
           
           //Menu Button click event
+          // [TODO]: when u have a reference variable menuPage,
+          // you need not query the document api in the if else block
           menuButton.addEventListener('click', ()=>{
-            var menuPage = document.getElementById('menu_page').getAttribute('visible');
+            //[MOVING THIS TO GLOBAL]var menuPage = document.getElementById('menu_page').getAttribute('visible');
             //console.log(menuPage);
             //menuPage.setAttribute('visible', true);
             if (menuPage == true) {
-              document.getElementById('menu_page').setAttribute('visible', false);
+                menuPage.setAttribute('visible', false);
+             // document.getElementById('menu_page').setAttribute('visible', false);
             } else{
-              document.getElementById('menu_page').setAttribute('visible', true);
+              menuPage.setAttribute('visible', true);
+              // document.getElementById('menu_page').setAttribute('visible', true);
             }
           });
 
           //Janastu Button click event
           janastuButton.addEventListener('click', ()=>{
-             document.getElementById('menu_page').setAttribute('visible', false);
+            menuPage.setAttribute('visible', false);
+             //document.getElementById('menu_page').setAttribute('visible', false);
              document.getElementById('content_layout').setAttribute('visible', true);
              content.forEach(function(node){
               content[1].setAttribute('visible', true);
@@ -111,7 +153,7 @@ AFRAME.registerComponent('pano_nav', {
 
           //Projects Button click event
           projectsButton.addEventListener('click', ()=>{
-            document.getElementById('menu_page').setAttribute('visible', false);
+            menuPage.setAttribute('visible', false);
             console.log("projectsButton");
             //var projects = document.createElement('a-entity');
             //sceneE1.appendChild(projects);
@@ -227,3 +269,5 @@ AFRAME.registerComponent('pano_nav', {
           };*/
         }
     });    
+
+})();
